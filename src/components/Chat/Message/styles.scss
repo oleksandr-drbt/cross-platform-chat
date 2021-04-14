@@ -1,0 +1,25 @@
+@import "~bootstrap/scss/bootstrap";
+
+.message {
+  &+& {
+    margin-top: 2rem;
+  }
+
+  &.message-right {
+    .message-body {
+      justify-content: flex-end;
+    }
+
+    .message-content {
+      background-color: $primary;
+      border-radius: .625rem .625rem 2px .625rem;
+      color: $white;
+    }
+  }
+
+  .message-content {
+    background-color: $light;
+    border-radius: .625rem .625rem .625rem 2px;
+    max-width: 45%;
+  }
+}

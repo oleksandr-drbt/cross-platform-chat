@@ -1,0 +1,14 @@
+#name-form {
+  input {
+    border: 1px solid #edeef6;
+    border-radius: .375rem;
+    padding: .9375rem 1.25rem;
+    font-size: .9375rem;
+    color: #7f808c;
+
+    &, &:active, &:focus {
+      background-color: #edeef6;
+    }
+  }
+}
+

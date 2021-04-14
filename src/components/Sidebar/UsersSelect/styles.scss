@@ -1,0 +1,13 @@
+.users-select {
+  .form-check {
+    &-label {
+      font-size: 14px;
+    }
+  }
+
+  .form-select {
+    &:active, &:focus {
+      border-color: #ced4da;
+    }
+  }
+}

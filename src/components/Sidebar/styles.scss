@@ -1,0 +1,8 @@
+.chat-sidebar {
+  width: 420px;
+  flex-grow: 0;
+  height: calc(100vh - 86px);
+  order: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

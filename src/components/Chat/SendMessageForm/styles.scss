@@ -1,0 +1,15 @@
+#send-message-form {
+  textarea.message-input {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    resize: none;
+    height: 50px;
+  }
+
+  button.send-message-btn {
+    align-items: center;
+    display: flex;
+    height: 40px;
+    width: 40px;
+  }
+}
