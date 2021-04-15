@@ -1,0 +1,21 @@
+{
+  "name": "chat-server-drobot-onishenko",
+  "description": "Chat Server",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "ts-node src/server.ts",
+    "server-dev": "ts-node-dev src/server.ts"
+  },
+  "dependencies": {
+    "socket.io": "^4.0.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.36",
+    "@types/socket.io": "^2.1.13",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
+  },
+  "main": "src/server.ts"
+}

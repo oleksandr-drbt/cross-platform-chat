@@ -1,28 +1,9 @@
-import { useEffect, useState } from 'react';
-import moment from 'moment';
+import { useContext } from 'react';
 import Message from './Message';
+import { ChatContext } from '../../App';
 
 function ChatContent() {
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    setMessages([
-      {
-        id: "1",
-        author: "Aleksandr Drobot",
-        content: "Yeah, I'm going to meet a friend of mine at the department store. I have to buy some presents for my parents.",
-        isMyOwn: true,
-        sentAt: moment(),
-      },
-      {
-        id: "2",
-        author: "Bohdan Onishenko",
-        content: "Yeah, I'm going to meet a friend of mine at the department store. I have to buy some presents for my parents.",
-        isMyOwn: false,
-        sentAt: moment(),
-      }
-    ]);
-  }, []);
+  const { messages } = useContext(ChatContext);
 
   return (
     <div className="chat-content h-100 d-flex flex-column justify-content-end px-5 py-5">

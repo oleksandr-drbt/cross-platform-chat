@@ -1,6 +1,7 @@
 {
-  "name": "cross-platform-lab-3-chat",
-  "version": "0.1.0",
+  "name": "chat-client-drobot-onishenko",
+  "description": "Chat Client",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -13,6 +14,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "socket.io-client": "^4.0.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

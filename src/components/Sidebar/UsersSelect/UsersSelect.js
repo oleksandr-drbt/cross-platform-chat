@@ -1,30 +1,13 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useContext, useState } from 'react';
+import { ChatContext } from "../../../App";
 import './styles.scss';
 
-const propTypes = {
-  users: PropTypes.instanceOf(Array),
-};
-
-const defaultProps = {
-  users: [
-    {
-      id: "1",
-      name: "Aleksandr Drobot"
-    },
-    {
-      id: "2",
-      name: "Bohdan Onishenko"
-    },
-  ],
-};
-
-function UsersSelect(props) {
-  const {
-    users,
-  } = props;
+function UsersSelect() {
+  const { users } = useContext(ChatContext);
 
   const [isSendToAll, setIsSendToAll] = useState(true);
+
+  const usersWithName = users.filter(({ userName }) => userName);
 
   const toggleSendToAll = (e) => {
     setIsSendToAll(prevState => !prevState);
@@ -37,10 +20,10 @@ function UsersSelect(props) {
         <label className="form-check-label d-block fw-bolder text-uppercase">send to all</label>
       </div>
       {!isSendToAll && (
-        <select className="form-select py-3" size={users.length} multiple>
-          {users && users.map(({ id, name }) => (
+        <select className="form-select py-3" size={usersWithName.length} multiple>
+          {usersWithName && usersWithName.map(({ id, userName }) => (
             <option value={id} className="p-2" key={id}>
-              {name}
+              {userName}
             </option>
           ))}
         </select>
@@ -48,8 +31,5 @@ function UsersSelect(props) {
     </div>
   )
 }
-
-UsersSelect.propTypes = propTypes;
-UsersSelect.defaultProps = defaultProps;
 
 export default UsersSelect;
