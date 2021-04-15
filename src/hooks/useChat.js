@@ -51,7 +51,7 @@ export const useChat = () => {
       clientId: socketConnectionRef.current.id,
       userName,
       content,
-    })
+    });
   };
 
   return { userName, users, messages, allMessagesCount, isSendToAll, setIsSendToAll, setRecipients, setUserName, sendMessage };

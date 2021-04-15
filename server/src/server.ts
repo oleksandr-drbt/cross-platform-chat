@@ -21,24 +21,25 @@ io.on('connection', (socket: Socket) => {
   console.log(`client ${clientId} connected`);
   sendConnectedUsers(connections, io);
 
-  // todo
   socket.emit(socketEvents.MESSAGE_COUNT, allMessagesCount);
   console.log(`all messages count: ${allMessagesCount}`);
 
   socket.on(socketEvents.MESSAGE_SEND, (messageData) => {
-    connections.set(clientId, { socket, userName: messageData.userName });
-    sendConnectedUsers(connections, io);
+    if (messageData.userName !== connections.get(clientId).userName) {
+      connections.set(clientId, { socket, userName: messageData.userName });
+      sendConnectedUsers(connections, io);
+    }
 
-    // todo
     sendMessage(messageData, io);
     io.emit(socketEvents.MESSAGE_COUNT, ++allMessagesCount);
   });
 
   socket.on(socketEvents.MESSAGE_SEND_TO, (messageData) => {
-    connections.set(clientId, { socket, userName: messageData.userName });
-    sendConnectedUsers(connections, io);
+    if (messageData.userName !== connections.get(clientId).userName) {
+      connections.set(clientId, { socket, userName: messageData.userName });
+      sendConnectedUsers(connections, io);
+    }
 
-    // todo
     sendMessageTo(messageData, connections);
     io.emit(socketEvents.MESSAGE_COUNT, ++allMessagesCount);
   });
