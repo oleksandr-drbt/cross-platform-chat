@@ -21,3 +21,17 @@ export const sendMessage = (messageData, io) => {
 
   io.emit(socketEvents.MESSAGE, message);
 };
+
+export const sendMessageTo = (messageData, connections) => {
+  console.log('new message received', messageData);
+
+  const message = generateMessage(messageData);
+  console.log('sending formatted message', message);
+
+  connections.get(messageData.clientId).socket.emit(socketEvents.MESSAGE, message);
+
+  const { recipients } = messageData;
+  recipients.forEach((recipientId) => {
+    connections.get(recipientId).socket.emit(socketEvents.MESSAGE, message);
+  })
+};

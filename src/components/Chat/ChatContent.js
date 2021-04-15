@@ -6,7 +6,7 @@ function ChatContent() {
   const { messages } = useContext(ChatContext);
 
   return (
-    <div className="chat-content h-100 d-flex flex-column justify-content-end px-5 py-5">
+    <div className="chat-content h-100 px-5 py-5">
       {messages.map((message) => <Message {...message} key={message.id} />)}
     </div>
   );

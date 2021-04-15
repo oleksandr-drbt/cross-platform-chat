@@ -10,6 +10,9 @@ export const ChatContext = createContext({
   users: [],
   messages: [],
   allMessagesCount: 0,
+  isSendToAll: true,
+  setRecipients: () => {},
+  setIsSendToAll: () => {},
   setUserName: () => {},
   sendMessage: () => {},
 });
@@ -20,6 +23,9 @@ function App() {
     users,
     messages,
     allMessagesCount,
+    isSendToAll,
+    setRecipients,
+    setIsSendToAll,
     setUserName,
     sendMessage,
   } = useChat();
@@ -27,7 +33,9 @@ function App() {
   return (
     <div className="layout bg-light d-flex flex-row">
       <NavBar />
-      <ChatContext.Provider value={{ userName, users, messages, allMessagesCount, setUserName, sendMessage }}>
+      <ChatContext.Provider value={{
+        userName, users, messages, allMessagesCount, isSendToAll, setIsSendToAll, setRecipients, setUserName, sendMessage
+      }}>
         <Sidebar />
         <Chat />
       </ChatContext.Provider>

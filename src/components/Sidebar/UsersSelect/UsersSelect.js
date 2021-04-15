@@ -1,16 +1,25 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ChatContext } from "../../../App";
 import './styles.scss';
 
 function UsersSelect() {
-  const { users } = useContext(ChatContext);
-
-  const [isSendToAll, setIsSendToAll] = useState(true);
+  const {
+    users,
+    isSendToAll,
+    setIsSendToAll,
+    setRecipients,
+  } = useContext(ChatContext);
 
   const usersWithName = users.filter(({ userName }) => userName);
 
-  const toggleSendToAll = (e) => {
+  const toggleSendToAll = () => {
+    if (!isSendToAll) setRecipients([]);
     setIsSendToAll(prevState => !prevState);
+  };
+
+  const handleSelectUsers = (e) => {
+    const { selectedOptions } = e.target;
+    setRecipients([...selectedOptions].map(({ value }) => value));
   };
 
   return (
@@ -20,7 +29,7 @@ function UsersSelect() {
         <label className="form-check-label d-block fw-bolder text-uppercase">send to all</label>
       </div>
       {!isSendToAll && (
-        <select className="form-select py-3" size={usersWithName.length} multiple>
+        <select className="form-select py-3" size={usersWithName.length} multiple onChange={handleSelectUsers}>
           {usersWithName && usersWithName.map(({ id, userName }) => (
             <option value={id} className="p-2" key={id}>
               {userName}

@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import { sendMessage } from "./handlers/sendMessage";
+import { sendMessage, sendMessageTo } from "./handlers/sendMessage";
 import { sendConnectedUsers } from "./handlers/sendConnectedUsers";
 import socketEvents from "./constants/socketEvents";
 
@@ -22,7 +22,7 @@ io.on('connection', (socket: Socket) => {
   sendConnectedUsers(connections, io);
 
   // todo
-  io.emit(socketEvents.MESSAGE_COUNT, allMessagesCount);
+  socket.emit(socketEvents.MESSAGE_COUNT, allMessagesCount);
   console.log(`all messages count: ${allMessagesCount}`);
 
   socket.on(socketEvents.MESSAGE_SEND, (messageData) => {
@@ -31,6 +31,15 @@ io.on('connection', (socket: Socket) => {
 
     // todo
     sendMessage(messageData, io);
+    io.emit(socketEvents.MESSAGE_COUNT, ++allMessagesCount);
+  });
+
+  socket.on(socketEvents.MESSAGE_SEND_TO, (messageData) => {
+    connections.set(clientId, { socket, userName: messageData.userName });
+    sendConnectedUsers(connections, io);
+
+    // todo
+    sendMessageTo(messageData, connections);
     io.emit(socketEvents.MESSAGE_COUNT, ++allMessagesCount);
   });
 
